@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ara Spirit | Tu Joyería Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Ara <span>Spirit</span></div>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Colecciones</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 Carrito <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Elegancia en cada detalle</h1>
+        <p>Modelos exclusivos diseñados para brillar.</p>
+        <button class="btn-primary">Ver Catálogo</button>
+    </section>
+
+    <main class="products">
+        <h2>Catálogo Exclusivo</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="img/arete.jpg" alt="Collar de Esmeralda" class="product-img">
+                </div>
+                <h3>Aretes Glitzy Green</h3>
+                <p>$5.00</p>
+                <button onclick="addToCart()">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="img/Pulsera.jpg" alt="Anillo de Oro" class="product-img">
+                </div>
+                <h3>Pulsera White Crystal Star</h3>
+                <p>$16.00</p>
+                <button onclick="addToCart()">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="img/Collar.webp" alt="Pendientes" class="product-img">
+                </div>
+                <h3>Collar Acelia</h3>
+                <p>$8.00</p>
+                <button onclick="addToCart()">Añadir al Carrito</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Joyería Prestige - Todos los derechos reservados</p>
+        <p>Pagos seguros con Tarjeta y PayPal</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
