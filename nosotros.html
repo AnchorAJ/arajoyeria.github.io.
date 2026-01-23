@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros | Ara Spirit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Pedido</h2>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="total-container"><strong>Total:</strong> <span id="cart-total-amount">$0.00</span></div>
+            <button class="btn-checkout" onclick="sendOrderWhatsApp()">Finalizar por WhatsApp</button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()"></div>
+
+    <div class="top-bar"><p id="announcement">✨ Bienvenidos a Ara Spirit</p></div>
+
+    <header>
+        <nav>
+            <div class="logo">Ara <span>Spirit</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Colecciones</a></li>
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <h1>Nuestra Historia</h1>
+    </section>
+
+    <main class="nosotros-layout">
+        <div class="nosotros-flex">
+            <div class="about-text">
+                <h2>Esencia Ara Spirit</h2>
+                <p>Nacimos con la misión de transformar metales y piedras preciosas en símbolos de momentos inolvidables. En <strong>Ara Spirit</strong>, cada pieza es diseñada pensando en la elegancia natural y el brillo propio de quien la porta.</p>
+                <p>Nuestra joyería utiliza materiales de alta calidad, garantizando que cada detalle sea un reflejo de perfección y compromiso con el arte de la orfebrería.</p>
+                <p>Creemos que una joya es más que un accesorio; es una extensión de tu personalidad y un legado que perdura en el tiempo.</p>
+            </div>
+            <div class="about-image">
+                    <img src="img/Logo.jpg" alt="Logo" class="product-img">
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Ara Spirit - Todos los derechos reservados</p></footer>
+
+    <a href="https://wa.me/593969280196" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

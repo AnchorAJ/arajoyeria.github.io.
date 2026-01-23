@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ara Spirit | Tu Joyería Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Pedido</h2>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+        </div>
+        <div id="cart-items-container">
+            <p class="empty-msg">Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-container">
+                <strong>Total:</strong>
+                <span id="cart-total-amount">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="sendOrderWhatsApp()">Finalizar por WhatsApp</button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()"></div>
+
+    <div class="top-bar">
+        <p id="announcement">✨ Bienvenidos a Ara Spirit</p>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">Ara <span>Spirit</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Colecciones</a></li>
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 Carrito <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Elegancia en cada detalle</h1>
+        <p>Modelos exclusivos diseñados para brillar.</p>
+        <a href="catalogo.html" class="btn-primary">Ver Catálogo</a>
+    </section>
+
+    <main class="products">
+        <h2>Destacados de Temporada</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="img/arete.jpg" alt="Aretes" class="product-img">
+                </div>
+                <h3>Aretes Glitzy Green</h3>
+                <p>$5.00</p>
+                <div class="quantity-selector">
+                    <input type="number" id="qty-1" value="1" min="1" class="qty-input">
+                </div>
+                <button onclick="addToCart('Aretes Glitzy Green', 5.00, parseInt(document.getElementById('qty-1').value))">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="img/Pulsera.jpg" alt="Pulsera" class="product-img">
+                </div>
+                <h3>Pulsera White Crystal Star</h3>
+                <p>$16.00</p>
+                <div class="quantity-selector">
+                    <input type="number" id="qty-2" value="1" min="1" class="qty-input">
+                </div>
+                <button onclick="addToCart('Pulsera White Crystal Star', 16.00, parseInt(document.getElementById('qty-2').value))">Añadir al Carrito</button>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="img/Collar.webp" alt="Collar" class="product-img">
+                </div>
+                <h3>Collar Acelia</h3>
+                <p>$8.00</p>
+                <div class="quantity-selector">
+                    <input type="number" id="qty-3" value="1" min="1" class="qty-input">
+                </div>
+                <button onclick="addToCart('Collar Acelia', 8.00, parseInt(document.getElementById('qty-3').value))">Añadir al Carrito</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ara Spirit - Todos los derechos reservados</p>
+        <p>Pagos seguros con Tarjeta y PayPal</p>
+    </footer>
+
+    <a href="https://wa.me/593969280196?text=Hola%20Ara%20Spirit!" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

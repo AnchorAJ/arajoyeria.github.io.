@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Ara Spirit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header"><h2>Tu Pedido</h2><span onclick="toggleCart()">&times;</span></div>
+        <div id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="total-container"><strong>Total:</strong> <span id="cart-total-amount">$0.00</span></div>
+            <button onclick="sendOrderWhatsApp()">Finalizar por WhatsApp</button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()"></div>
+
+    <div class="top-bar"><p id="announcement">✨ Bienvenidos a Ara Spirit</p></div>
+
+    <header>
+        <nav>
+            <div class="logo">Ara <span>Spirit</span></div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Colecciones</a></li>
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+        </nav>
+    </header>
+
+    <main class="products">
+        <h2>Catálogo Completo</h2>
+        <div class="product-grid" id="grid-catalogo"></div>
+        <div class="pagination">
+            <button onclick="cambiarPagina(1)" class="btn-page active">1</button>
+            <button onclick="cambiarPagina(2)" class="btn-page">2</button>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Ara Spirit</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
+:root {
+    --verde: #8DC65C;
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --azul-claro: #D3EAF8;
+    --gris-frio: #f4f4f4;
+}
+
+html { 
+    scroll-behavior: smooth;
+    overflow-y: scroll; /* Reserva espacio para scrollbar y evita saltos de menú */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--blanco);
+    color: var(--negro);
+    line-height: 1.6;
+}
+
+/* --- HEADER Y NAVEGACIÓN --- */
+.top-bar { background-color: var(--negro); color: var(--blanco); text-align: center; padding: 10px; font-weight: bold; font-size: 0.9rem; }
+header { background-color: var(--blanco); padding: 15px 5%; border-bottom: 3px solid var(--azul-claro); position: sticky; top: 0; z-index: 1000; width: 100%; }
+nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+.logo { font-size: 1.5rem; font-weight: bold; }
+.logo span { color: var(--verde); }
+nav ul { display: flex; list-style: none; gap: 30px; }
+nav a { text-decoration: none; color: var(--negro); font-weight: bold; transition: 0.3s; }
+nav a:hover { color: var(--verde); }
+.cart-icon { background-color: var(--azul-claro); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+
+/* --- HERO (INICIO) --- */
+.hero { 
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://i.pinimg.com/originals/e9/a9/4c/e9a94c6ebdcab4bc9bc42a110c170a31.gif'); 
+    background-size: cover; background-position: center; background-attachment: fixed;
+    height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; color: white;
+}
+.hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+.hero .btn-primary { 
+    background-color: var(--verde); color: white; padding: 15px 35px; border: none; border-radius: 5px; 
+    font-size: 1.1rem; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* --- CATÁLOGO Y PRODUCTOS (CORRECCIÓN DE GRID) --- */
+.products { padding: 50px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas para 3x3 */
+    gap: 30px; margin-top: 30px; 
+}
+
+.product-card { border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: center; transition: 0.3s; background: white; }
+.img-container { width: 100%; height: 250px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; background: var(--gris-frio); }
+.product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.product-card:hover .product-img { transform: scale(1.1); }
+
+/* CONTADORES COMPACTOS */
+.quantity-selector { margin-bottom: 10px; display: flex; justify-content: center; }
+.qty-input { width: 50px; height: 30px; text-align: center; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; }
+.product-card button { background-color: var(--negro); color: white; width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+
+/* --- CARRITO SIDEBAR (DISEÑO LIMPIO RECUPERADO) --- */
+.cart-sidebar { 
+    position: fixed; top: 0; right: -100%; width: 350px; height: 100vh; background: white; 
+    z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+}
+.cart-sidebar.active { right: 0; }
+#cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+#cart-overlay.active { display: block; }
+
+.cart-header { padding: 25px; background: var(--azul-claro); display: flex; justify-content: space-between; align-items: center; }
+#cart-items-container { flex: 1; padding: 20px; overflow-y: auto; text-align: left; }
+
+/* Items dentro del carrito NO heredan grid del catálogo */
+.cart-item { 
+    display: flex; /* Flex para mantener nombre e imagen a la izquierda y controles a la derecha */
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 0; border-bottom: 1px solid #eee; 
+}
+.item-controls { display: flex; align-items: center; gap: 10px; }
+.cart-qty { width: 45px; height: 25px; text-align: center; border: 1px solid #ddd; border-radius: 4px; }
+.btn-remove { background: #ffeded; color: #ff4d4d; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+
+.cart-footer { padding: 25px; border-top: 2px solid var(--azul-claro); }
+.btn-checkout { background: var(--verde); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+/* --- PÁGINA SOBRE NOSOTROS --- */
+.about-hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.pinimg.com/originals/3b/19/bc/3b19bc1e8ab21a1fb355e466cf464865.gif'); background-size: cover; background-position: center; height: 300px; display: flex; justify-content: center; align-items: center; color: white; }
+.nosotros-layout { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
+.nosotros-flex { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+.about-text { flex: 1; min-width: 300px; text-align: left; }
+.about-text h2 { color: var(--verde); margin-bottom: 20px; font-size: 2.5rem; }
+.about-image { flex: 1; min-width: 300px; }
+.img-animated { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0px var(--azul-claro); transition: 0.5s; }
+
+/* --- PAGINACIÓN Y OTROS --- */
+.pagination { display: flex; justify-content: center; gap: 12px; margin-top: 40px; }
+.btn-page { background: white; border: 2px solid var(--azul-claro); padding: 10px 18px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.btn-page.active { background: var(--verde); color: white; border-color: var(--verde); }
+.whatsapp-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; z-index: 1000; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0px rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0px rgba(37, 211, 102, 0); } }
+footer { background: var(--negro); color: white; padding: 30px; text-align: center; }
+
+/* RESPONSIVO */
+@media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
