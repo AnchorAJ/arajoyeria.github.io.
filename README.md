@@ -1,0 +1,2 @@
+# arajoyeria.github.io.
+ignorar
