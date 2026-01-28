@@ -2,7 +2,7 @@ let cart = JSON.parse(localStorage.getItem('araSpiritCart')) || [];
 
 const todasLasJoyas = [
     // --- PÁGINA 1 (8 Productos) ---
-    { id: 1, name: "Aretes Glitzy Green", price: 5.0, img: " " },
+    { id: 1, name: "Aretes Glitzy Green", price: 5.0, img: "img/Arete.jpg" },
     { id: 2, name: "Pulsera White Crystal", price: 16.0, img: "img/Pulsera.jpg" },
     { id: 3, name: "Collar Acelia", price: 8.0, img: "img/Collar.webp" },
     { id: 4, name: "Aretes Aura", price: 10.0, img: "img/Aura.jpg" },
@@ -136,4 +136,5 @@ setInterval(() => {
     if(el) el.innerText = messages[currentMsg];
 
 }, 4000);
+
 
