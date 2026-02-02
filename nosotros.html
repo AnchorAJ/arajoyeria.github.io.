@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP1D0F4W7F"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,27 +11,10 @@
   gtag('config', 'G-MP1D0F4W7F');
 </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros | Ara Spirit</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h2>Tu Pedido</h2>
-            <span class="close-cart" onclick="toggleCart()">&times;</span>
-        </div>
-        <div id="cart-items-container"></div>
-        <div class="cart-footer">
-            <div class="total-container"><strong>Total:</strong> <span id="cart-total-amount">$0.00</span></div>
-            <button class="btn-checkout" onclick="sendOrderWhatsApp()">Finalizar por WhatsApp</button>
-        </div>
-    </div>
-    <div id="cart-overlay" onclick="toggleCart()"></div>
-
-    <div class="top-bar"><p id="announcement">✨ Bienvenidos a Ara Spirit</p></div>
-
     <header>
         <nav>
             <div class="logo">Ara <span>Spirit</span></div>
@@ -44,31 +27,53 @@
         </nav>
     </header>
 
-    <section class="about-hero">
-        <h1>Nuestra Historia</h1>
-    </section>
-
     <main class="nosotros-layout">
         <div class="nosotros-flex">
             <div class="about-text">
-                <h2>Esencia Ara Spirit</h2>
-                <p>Nacimos con la misión de transformar metales y piedras preciosas en símbolos de momentos inolvidables. En <strong>Ara Spirit</strong>, cada pieza es diseñada pensando en la elegancia natural y el brillo propio de quien la porta.</p>
-                <p>Nuestra joyería utiliza materiales de alta calidad, garantizando que cada detalle sea un reflejo de perfección y compromiso con el arte de la orfebrería.</p>
-                <p>Creemos que una joya es más que un accesorio; es una extensión de tu personalidad y un legado que perdura en el tiempo.</p>
+                <h2 style="color:var(--verde); font-size:2.5rem; margin-bottom:20px;">Nuestra Historia</h2>
+                <p>"Nacimos con la misión de transformar metales y piedras preciosas en símbolos de momentos inolvidables, fusionando la maestría de la orfebrería tradicional con la vanguardia de un sistema de gestión integral. En Ara Spirit, cada pieza es diseñada pensando en la elegancia natural, garantizando que cada detalle sea un reflejo de perfección y un compromiso con la innovación digital. Creemos que una joya es más que un accesorio; es una extensión de tu personalidad protegida por un ecosistema tecnológico que asegura la transparencia en cada proceso, desde el control de inventario en tiempo real hasta una atención personalizada y segura. Nuestra esencia reside en la confianza: digitalizamos el 100% de nuestras operaciones para eliminar errores y ofrecerte un legado de calidad que perdura en el tiempo.".</p>
             </div>
             <div class="about-image">
-                    <img src="img/Logo.jpg" alt="Logo" class="product-img">
+                <img src="img/Logo.jpg" alt="Aretes" class="product-img">
             </div>
         </div>
     </main>
 
-    <footer><p>&copy; 2026 Ara Spirit - Todos los derechos reservados</p></footer>
+    <footer style="background:black; color:white; padding:40px; text-align:center;">
+        <p>&copy; 2026 Ara Spirit - Todos los derechos reservados</p>
+        <footer>
+    <div class="footer-container">
+        <div class="footer-info">
+            <h3 style="color:white;">Ara <span style="color:var(--verde);">Spirit</span></h3>
+            <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">Elegancia artesanal y gestión integral de joyería[cite: 1, 2].</p>
+        </div>
+        <div class="footer-links">
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="#">Términos y Condiciones</a></li>
+                <li><a href="#">Política de Privacidad</a></li>
+                <li><a href="#">Política de Cookies</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" alt="TikTok"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ara Spirit - Sistema de Gestión Integral[cite: 2].</p>
+    </div>
+</footer>
 
-    <a href="https://wa.me/593969280196" class="whatsapp-btn" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
+<div id="cookie-banner" class="cookie-banner">
+    <p style="font-size: 0.9rem;">Utilizamos cookies para mejorar tu experiencia y la seguridad de tus datos[cite: 84, 106].</p>
+    <button onclick="acceptCookies()">Aceptar</button>
+</div>
+    </footer>
     <script src="script.js"></script>
 </body>
-
 </html>
