@@ -109,3 +109,81 @@ footer { background: var(--negro); color: white; padding: 30px; text-align: cent
 /* RESPONSIVO */
 @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
+
+
+/* --- SECCIÓN LEGAL Y REDES SOCIALES --- */
+footer {
+    background-color: var(--negro);
+    color: white;
+    padding: 60px 10% 20px;
+    text-align: left; /* Para alinearse con el estilo profesional del PDF */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-links h4, .footer-social h4 {
+    color: var(--verde);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.footer-links ul { list-style: none; }
+.footer-links a { 
+    color: #ccc; 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+    transition: 0.3s; 
+}
+
+.footer-links a:hover { color: var(--verde); }
+
+.social-icons { display: flex; gap: 15px; }
+.social-icons img { 
+    width: 24px; 
+    filter: invert(1); /* Hace los iconos blancos */
+    transition: 0.3s;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* --- BANNER DE COOKIES --- */
+.cookie-banner {
+    position: fixed;
+    bottom: -150px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    z-index: 3000;
+    transition: 0.5s ease;
+}
+
+.cookie-banner.show { bottom: 20px; }
+.cookie-banner button {
+    background: var(--verde);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
