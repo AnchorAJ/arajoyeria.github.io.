@@ -1,189 +1,158 @@
-/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
-:root {
-    --verde: #8DC65C;
-    --blanco: #FFFFFF;
-    --negro: #000000;
-    --azul-claro: #D3EAF8;
-    --gris-frio: #f4f4f4;
+let cart = JSON.parse(localStorage.getItem('araSpiritCart')) || [];
+
+const todasLasJoyas = [
+    // --- PÁGINA 1 (8 Productos) ---
+    { id: 1, name: "Aretes Glitzy Green", price: 5.0, img: "img/Arete.jpg" },
+    { id: 2, name: "Pulsera White Crystal", price: 16.0, img: "img/Pulsera.jpg" },
+    { id: 3, name: "Collar Acelia", price: 8.0, img: "img/Collar.webp" },
+    { id: 4, name: "Aretes Aura", price: 10.0, img: "img/Aura.jpg" },
+    { id: 5, name: "Earcuff Amada", price: 7.0, img: "img/Amada.jpg" },
+    { id: 6, name: "Pinzas para cabello Love", price: 5.0, img: "img/Pinzas.jpg" },
+    { id: 7, name: "Pulseras Spirit", price: 10.0, img: "img/Spirit.jpg" },
+    { id: 8, name: "Aretes Marie", price: 7.0, img: "img/Marie.jpg" },
+
+    // --- PÁGINA 2 (8 Productos) ---
+    { id: 10, name: "Cadena Balloon dog", price: 12.0, img: "img/Dog.jpg" },
+    { id: 11, name: "Aretes glitzy rainbow", price: 5.0, img: "img/Rainbow.jpg" },
+    { id: 12, name: "Pulsera de cadena Locked", price: 10.5, img: "img/Locked.jpg" },
+    { id: 13, name: "Aretes glitzy red", price: 5.0, img: "img/Red.jpg" },
+    { id: 14, name: "Aretes glitzy blue", price: 5.0, img: "img/Blue.jpg" },
+    { id: 15, name: "Aretes Estrella", price: 5.0, img: "img/Estrella.jpg" },
+    { id: 16, name: "Cadena Golden Eye", price: 12.5, img: "img/Eye.jpg" },
+        { id: 9, name: "Aretes Espiral ", price: 9.0, img: "img/Espiral.jpg" },
+
+];
+
+function cambiarPagina(num) {
+    const grid = document.getElementById('grid-catalogo');
+    if (!grid) return;
+    grid.innerHTML = "";
+    const inicio = (num - 1) * 9;
+    const fin = inicio + 9;
+    const joyasPagina = todasLasJoyas.slice(inicio, fin);
+
+    joyasPagina.forEach(joya => {
+        grid.innerHTML += `
+            <div class="product-card visible">
+                <div class="img-container"><img src="${joya.img}" class="product-img"></div>
+                <h3>${joya.name}</h3>
+                <p>$${joya.price.toFixed(2)}</p>
+                <div class="quantity-selector">
+                    <input type="number" id="qty-${joya.id}" value="1" min="1" class="qty-input">
+                </div>
+                <button onclick="prepareAddToCart(${joya.id})">Añadir al Carrito</button>
+            </div>
+        `;
+    });
+    document.querySelectorAll('.btn-page').forEach((btn, i) => btn.classList.toggle('active', (i + 1) === num));
 }
 
-html { 
-    scroll-behavior: smooth;
-    overflow-y: scroll; /* Reserva espacio para scrollbar y evita saltos de menú */
+function prepareAddToCart(id) {
+    const joya = todasLasJoyas.find(j => j.id === id);
+    const qty = parseInt(document.getElementById(`qty-${id}`).value);
+    addToCart(joya.name, joya.price, qty);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--blanco);
-    color: var(--negro);
-    line-height: 1.6;
+function addToCart(name, price, qty = 1) {
+    const index = cart.findIndex(item => item.name === name);
+    if (index > -1) { cart[index].qty += qty; } 
+    else { cart.push({ name, price, qty }); }
+    saveAndUpdate();
+    alert(`¡Añadido: ${name} (x${qty})!`);
 }
 
-/* --- HEADER Y NAVEGACIÓN --- */
-.top-bar { background-color: var(--negro); color: var(--blanco); text-align: center; padding: 10px; font-weight: bold; font-size: 0.9rem; }
-header { background-color: var(--blanco); padding: 15px 5%; border-bottom: 3px solid var(--azul-claro); position: sticky; top: 0; z-index: 1000; width: 100%; }
-nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
-.logo { font-size: 1.5rem; font-weight: bold; }
-.logo span { color: var(--verde); }
-nav ul { display: flex; list-style: none; gap: 30px; }
-nav a { text-decoration: none; color: var(--negro); font-weight: bold; transition: 0.3s; }
-nav a:hover { color: var(--verde); }
-.cart-icon { background-color: var(--azul-claro); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; }
-
-/* --- HERO (INICIO) --- */
-.hero { 
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('https://i.pinimg.com/originals/e9/a9/4c/e9a94c6ebdcab4bc9bc42a110c170a31.gif'); 
-    background-size: cover; background-position: center; background-attachment: fixed;
-    height: 450px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; color: white;
-}
-.hero h1 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-.hero .btn-primary { 
-    background-color: var(--verde); color: white; padding: 15px 35px; border: none; border-radius: 5px; 
-    font-size: 1.1rem; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+function updateQuantity(index, newQty) {
+    if (newQty <= 0) removeFromCart(index);
+    else { cart[index].qty = parseInt(newQty); saveAndUpdate(); }
 }
 
-/* --- CATÁLOGO Y PRODUCTOS (CORRECCIÓN DE GRID) --- */
-.products { padding: 50px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
-.product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas para 3x3 */
-    gap: 30px; margin-top: 30px; 
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveAndUpdate();
 }
 
-.product-card { border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: center; transition: 0.3s; background: white; }
-.img-container { width: 100%; height: 250px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; background: var(--gris-frio); }
-.product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.product-card:hover .product-img { transform: scale(1.1); }
-
-/* CONTADORES COMPACTOS */
-.quantity-selector { margin-bottom: 10px; display: flex; justify-content: center; }
-.qty-input { width: 50px; height: 30px; text-align: center; border: 1px solid #ddd; border-radius: 4px; font-weight: bold; }
-.product-card button { background-color: var(--negro); color: white; width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
-
-/* --- CARRITO SIDEBAR (DISEÑO LIMPIO RECUPERADO) --- */
-.cart-sidebar { 
-    position: fixed; top: 0; right: -100%; width: 350px; height: 100vh; background: white; 
-    z-index: 2000; transition: 0.4s; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
-}
-.cart-sidebar.active { right: 0; }
-#cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
-#cart-overlay.active { display: block; }
-
-.cart-header { padding: 25px; background: var(--azul-claro); display: flex; justify-content: space-between; align-items: center; }
-#cart-items-container { flex: 1; padding: 20px; overflow-y: auto; text-align: left; }
-
-/* Items dentro del carrito NO heredan grid del catálogo */
-.cart-item { 
-    display: flex; /* Flex para mantener nombre e imagen a la izquierda y controles a la derecha */
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 15px 0; border-bottom: 1px solid #eee; 
-}
-.item-controls { display: flex; align-items: center; gap: 10px; }
-.cart-qty { width: 45px; height: 25px; text-align: center; border: 1px solid #ddd; border-radius: 4px; }
-.btn-remove { background: #ffeded; color: #ff4d4d; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
-
-.cart-footer { padding: 25px; border-top: 2px solid var(--azul-claro); }
-.btn-checkout { background: var(--verde); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-/* --- PÁGINA SOBRE NOSOTROS --- */
-.about-hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.pinimg.com/originals/3b/19/bc/3b19bc1e8ab21a1fb355e466cf464865.gif'); background-size: cover; background-position: center; height: 300px; display: flex; justify-content: center; align-items: center; color: white; }
-.nosotros-layout { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
-.nosotros-flex { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
-.about-text { flex: 1; min-width: 300px; text-align: left; }
-.about-text h2 { color: var(--verde); margin-bottom: 20px; font-size: 2.5rem; }
-.about-image { flex: 1; min-width: 300px; }
-.img-animated { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0px var(--azul-claro); transition: 0.5s; }
-
-/* --- PAGINACIÓN Y OTROS --- */
-.pagination { display: flex; justify-content: center; gap: 12px; margin-top: 40px; }
-.btn-page { background: white; border: 2px solid var(--azul-claro); padding: 10px 18px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-.btn-page.active { background: var(--verde); color: white; border-color: var(--verde); }
-.whatsapp-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; z-index: 1000; animation: pulse 2s infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0px rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0px rgba(37, 211, 102, 0); } }
-footer { background: var(--negro); color: white; padding: 30px; text-align: center; }
-
-/* RESPONSIVO */
-@media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
-
-
-/* --- SECCIÓN LEGAL Y REDES SOCIALES --- */
-footer {
-    background-color: var(--negro);
-    color: white;
-    padding: 60px 10% 20px;
-    text-align: left; /* Para alinearse con el estilo profesional del PDF */
+function saveAndUpdate() {
+    localStorage.setItem('araSpiritCart', JSON.stringify(cart));
+    updateCartUI();
 }
 
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
+function updateCartUI() {
+    const container = document.getElementById('cart-items-container');
+    const countElement = document.getElementById('cart-count');
+    const totalElement = document.getElementById('cart-total-amount');
+    let total = 0; let itemsCount = 0;
+
+    if (!container) return;
+
+    if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align:center; margin-top:20px;">Tu carrito está vacío.</p>';
+    } else {
+        container.innerHTML = cart.map((item, index) => {
+            const subtotal = item.price * item.qty;
+            total += subtotal; itemsCount += item.qty;
+            return `
+                <div class="cart-item">
+                    <div><strong>${item.name}</strong><br><small>$${item.price.toFixed(2)}</small></div>
+                    <div class="item-controls">
+                        <input type="number" value="${item.qty}" min="1" onchange="updateQuantity(${index}, this.value)" class="cart-qty">
+                        <button class="btn-remove" onclick="removeFromCart(${index})">×</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    if(countElement) countElement.innerText = itemsCount;
+    if(totalElement) totalElement.innerText = "$" + total.toFixed(2);
 }
 
-.footer-links h4, .footer-social h4 {
-    color: var(--verde);
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+function toggleCart() {
+    document.getElementById('cart-sidebar').classList.toggle('active');
+    document.getElementById('cart-overlay').classList.toggle('active');
 }
 
-.footer-links ul { list-style: none; }
-.footer-links a { 
-    color: #ccc; 
-    text-decoration: none; 
-    font-size: 0.9rem; 
-    transition: 0.3s; 
+function sendOrderWhatsApp() {
+    if (cart.length === 0) return alert("Carrito vacío");
+    let totalTotal = 0;
+    let message = "¡Hola Ara Spirit! ✨ Mi pedido es:%0A%0A";
+    cart.forEach(item => {
+        const subtotal = item.price * item.qty;
+        totalTotal += subtotal;
+        message += `• ${item.name} (x${item.qty}) - $${subtotal.toFixed(2)}%0A`;
+    });
+    message += `%0A*TOTAL: $${totalTotal.toFixed(2)}*`;
+    window.open(`https://wa.me/593969280196?text=${message}`, '_blank');
 }
 
-.footer-links a:hover { color: var(--verde); }
+window.onload = () => {
+    updateCartUI();
+    if(document.getElementById('grid-catalogo')) cambiarPagina(1);
+};
 
-.social-icons { display: flex; gap: 15px; }
-.social-icons img { 
-    width: 24px; 
-    filter: invert(1); /* Hace los iconos blancos */
-    transition: 0.3s;
+const messages = ["✨ Bienvenidos a Ara Spirit", "🚚 Envíos gratis sobre $30", "💎 Joyería con Amor"];
+let currentMsg = 0;
+setInterval(() => {
+    currentMsg = (currentMsg + 1) % messages.length;
+    const el = document.getElementById('announcement');
+    if(el) el.innerText = messages[currentMsg];
+}, 4000);
+
+// Gestión de Cookies - ARA Joyería
+function checkCookies() {
+    if (!localStorage.getItem('ara_cookies_accepted')) {
+        setTimeout(() => {
+            const banner = document.getElementById('cookie-banner');
+            if(banner) banner.classList.add('show');
+        }, 2000);
+    }
 }
 
-.footer-bottom {
-    margin-top: 40px;
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #777;
+function acceptCookies() {
+    localStorage.setItem('ara_cookies_accepted', 'true');
+    const banner = document.getElementById('cookie-banner');
+    if(banner) banner.classList.remove('show');
 }
 
-/* --- BANNER DE COOKIES --- */
-.cookie-banner {
-    position: fixed;
-    bottom: -150px;
-    left: 20px;
-    right: 20px;
-    background: white;
-    color: black;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    z-index: 3000;
-    transition: 0.5s ease;
+// Ejecutar al cargar la página
+window.addEventListener('load', checkCookies);
 }
 
-.cookie-banner.show { bottom: 20px; }
-.cookie-banner button {
-    background: var(--verde);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
